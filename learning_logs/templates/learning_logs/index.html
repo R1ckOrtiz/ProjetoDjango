@@ -1,5 +1,46 @@
-{% extends "Learning_logs/base.html" %}
+{% extends "learning_logs/base.html" %}
 
-{% block content%}
-    <p>Essa aplicação te ajudará a organizar seus estudos.</p>
-{%endblock content%}
+{% block header %}
+    <div class="jumbotron text-center bg-primary text-white py-5">
+        <h1 class="display-4">Acompanhe seu Aprendizado</h1>
+        <p class="lead">Organize suas ideias e registre suas descobertas.</p>
+    </div>
+{% endblock header %}
+
+{% block content %}
+    <div class="container my-5">
+        {% if user.is_authenticated %}
+            <div class="text-center">
+                <h2 class="text-success">
+                    Sempre que você aprender algo novo sobre um tópico, 
+                    faça uma entrada resumindo o que você aprendeu.
+                </h2>
+                <p class="mt-4">
+                    Continue registrando suas ideias e veja como seu conhecimento cresce com o tempo!
+                </p>
+            </div>
+        {% else %}
+            <div class="alert alert-info text-center" role="alert">
+                <h2>
+                    <a href="{% url 'register' %}" class="btn btn-primary btn-lg">
+                        Crie uma Conta
+                    </a>
+                    <span class="d-block mt-3">
+                        Para utilizar o Learning Log e listar os tópicos que você está aprendendo.
+                    </span>
+                </h2>
+            </div>
+
+            <div class="text-center mt-4">
+                <h3>
+                    Sempre que você aprender algo novo sobre um tópico, 
+                    faça uma entrada resumindo o que você aprendeu.
+                </h3>
+                <p class="text-muted mt-3">
+                    Experimente organizar suas ideias e acompanhe seu progresso de aprendizado.
+                </p>
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}
+
